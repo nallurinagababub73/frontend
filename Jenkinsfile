@@ -1,35 +1,38 @@
 pipeline {
- agent { node { label 'workstation' } }
+ agent {
+    node { label 'workstation' }
+ }
 
+   stages {
+        stage ('build') {
+          steps {
+            sh 'echo build'
+            sh 'npm install'
+          }
+        }
+        stage ('test') {
+          steps {
+            sh 'echo test'
 
-   stages {
-        stage ('Unit test') {
-          steps {
-            sh 'echo test passed'
           }
         }
-   }
-   stages {
-        stage ('Code Coverage') {
+        stage ('Code analysis') {
           steps {
-            sh 'echo Code Coverage'
+            sh 'echo Code analysis'
+
           }
         }
-   }
-   stages {
-        stage ('security Scans') {
+        stage ('Security scans') {
           steps {
-            sh 'echo security check passed'
+            sh 'echo Security scans'
+
           }
         }
-   }
-   stages {
         stage ('Publish an artifactory') {
           steps {
-            sh 'echo published an artifactory'
+            sh 'echo Publish an artifactory'
+
           }
         }
    }
-
-
 }
